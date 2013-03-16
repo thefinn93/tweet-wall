@@ -33,5 +33,10 @@
     <script defer src="https://ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js"></script>
     <script defer>window.attachEvent('onload',function(){CFInstall.check({mode:'overlay'})})</script>
     <![endif]-->
+    <?
+    if(is_file("config.inc.php")) {
+        include("config.inc.php");
+    }
+    ?>
 </body>
 </html>
