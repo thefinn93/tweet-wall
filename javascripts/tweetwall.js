@@ -28,21 +28,10 @@
     setInterval(process, 8000);
     return list;
   }
- 
-  var querytext = 'aiww OR "ai weiwei" OR "aiweiwei" OR "#aiww" OR "freeaiweiwei" OR aiwwenglish OR weiweicam';
-  // var querytext = 'weiweicam';
-  if ( typeof realquerytext !== 'undefined' ) {
-      querytext = realquerytext;
-  } 
 
-  var flickrquerytext;
-  if ( typeof realflickrquerytext !== 'undefined' ) {
     flickrquerytext = encodeURIComponent(realflickrquerytext);
-  } else {
-    flickrquerytext = encodeURIComponent('aiww OR "ai weiwei" OR "aiweiwei" OR "#aiww" OR "freeaiweiwei" OR aiwwenglish');
-  }
 
-  var query = encodeURIComponent(querytext);
+  var query = encodeURIComponent(realquerytext);
   url = 'https://search.twitter.com/search.json?q=' + query + '&rpp=30&include_entities=true&callback=?'; 
  
   $(function() {
@@ -82,8 +71,6 @@
     
     jsonFlickrApi = function(data) {
       $.each(data.photos.photo, function(i,photo){
-        //notice that "t.jpg" is where you change the
-        //size of the image
         var t_url = "https://farm" + photo.farm + 
         ".static.flickr.com/" + photo.server + "/" + 
         photo.id + "_" + photo.secret + "_" + "m.jpg";
@@ -96,11 +83,7 @@
     }
 
     function fetchFlicks() {
-      var f_api = '6f6a0a18485bf6a2a6b9a7f467e39f96';
-      if ( typeof flickr_api !== 'undefined' ) {
-          f_api = flickr_api;
-      }
-
+      f_api = flickr_api;
       var flick_url = "https://secure.flickr.com/services/rest/?callback=?&format=json&method=flickr.photos.search&text=" + flickrquerytext + "&tag_mode=any&api_key=" + f_api + "&jsoncallback=jsonFlickrApi";
       if (flicks.items.length < 15) {
           $.getJSON(flick_url)
@@ -114,7 +97,6 @@
         var d = new Date(datestring);
         if (!isNaN(d.getMonth())) {
             return d;
-            // return d.getFullYear() + "-" + (d.getMonth()+1) + "-" + d.getDate() + " " + d.getHours() + ":" + d.getMinutes();
         } else {
             return "";
         }

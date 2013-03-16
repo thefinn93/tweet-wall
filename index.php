@@ -25,7 +25,7 @@
   <script src="javascripts/jquery.highlight-3.js" type="text/javascript"></script>
   <script src="javascripts/jquery-linkify/src/jquery.linkify.js" type="text/javascript"></script>
   <script src="javascripts/tweetwall.js" type="text/javascript"></script>
-  <link rel="stylesheet" type="text/css" href="stylesheets/weiweicam.css">
+  <link rel="stylesheet" type="text/css" href="stylesheets/tweetwall.css">
   <meta http-equiv="refresh" content="10800" />
 </head>
 <body>
