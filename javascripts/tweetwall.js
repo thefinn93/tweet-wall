@@ -50,7 +50,7 @@
         var url = 'https://search.twitter.com/search.json?q=' + query + '&rpp=30&callback=?'; 
         $.getJSON(url, function(data) {
           $.each(data.results, function() {  
-            tweets.push($('<li><img class="profile" src="' + this.profile_image_url_https + '"/><span class="meta"><span class="from">' + this.from_user + '</span> <span class="created_at">' + fmtDates(this.created_at) + '</span></span>' + inlinePics(this.text) + '</li>'))
+            tweets.push($('<li><img class="profile" src="' + this.profile_image_url_https + '"/><span class="meta"><span class="from">' + this.from_user + '</span> <span class="created_at">' + fmtDates(this.created_at) + '</span></span>' + $("<span>" + this.text + "</span>").linkify(hashtagUrlBuilder: function(tag) {return window.location.origin + window.location.pathname + "?q=" + tag;0}, target: "_blank")[0].innerHTML + '</li>'))
            }); 
          });
       }
@@ -90,12 +90,6 @@
     }
          
     
-    function inlinePics(text) {
-      return text
-        .replace(/http:\/\/twitpic\.com\/([\w\d]+)/, '<img src="https://twitpic.com/show/thumb/$1" class="twitpic">')
-        .replace(/http:\/\/yfrog\.com\/([\w\d]+)/, '<img src="https://yfrog.com/$1.th.jpg" class="twitpic">')
-        .replace(/http:\/\/pic\.im\/([\w\d]+)/, '<img src="https://pic.im/website/thumbnail/$1" class="twitpic">')
-    }
 
     function fmtDates(datestring) {
         var d = new Date(datestring);
