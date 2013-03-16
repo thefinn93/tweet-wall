@@ -1,3 +1,6 @@
-[submodule "javascripts/jquery-linkify"]
-	path = javascripts/jquery-linkify
+[submodule "resources/jquery-scrollbox"]
+	path = resources/jquery-scrollbox
+	url = https://github.com/jrallison/jquery-scrollbox-js
+[submodule "resources/jquery-linkify"]
+	path = resources/jquery-linkify
 	url = https://github.com/dobot/jquery-linkify
