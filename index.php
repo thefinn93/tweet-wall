@@ -8,6 +8,7 @@
        $trends = json_decode(file_get_contents("https://api.twitter.com/1/trends/1.json"));
        $query = $trends[0]->trends[0]->name;
    }
+   header("content-type: text/html; charset=utf-8");
   ?><!DOCTYPE html>
 <html lang="en">
 <head>
