@@ -1,15 +1,19 @@
-  <?
-   $query = null;
-   if(isset($_REQUEST['q'])) {
-       $query = $_REQUEST['q'];
-   } elseif(isset($_REQUEST['query'])) {
-       $query = $_REQUEST['query'];
-   } else {
-       $trends = json_decode(file_get_contents("https://api.twitter.com/1/trends/1.json"));
-       $query = $trends[0]->trends[0]->name;
-   }
-   header("content-type: text/html; charset=utf-8");
-  ?><!DOCTYPE html>
+<?
+$query = null;
+if(isset($_REQUEST['q'])) {
+    if($_REQUEST['q'] != "") {
+        $query = $_REQUEST['q'];
+    }
+} elseif(isset($_REQUEST['query'])) {
+    if($_REQUEST['query'] != "") {
+        $query = $_REQUEST['query'];
+    }
+} else {
+    $trends = json_decode(file_get_contents("https://api.twitter.com/1/trends/1.json"));
+    $query = $trends[0]->trends[0]->name;
+}
+header("content-type: text/html; charset=utf-8");
+?><!DOCTYPE html>
 <html lang="en">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
