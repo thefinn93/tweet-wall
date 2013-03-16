@@ -3,6 +3,10 @@
     var list = this;
     list.items = [];
     
+    function hashtagHandler(tag) {
+        return window.location.origin + window.location.pathname + "?q=" + tag;
+    }
+    
     list.push = function(items) {
       items.css('display', 'none').highlight(realquerytext);
       items.each(function() {
@@ -47,11 +51,16 @@
     function fetchTweets() {
       if(tweets.items.length < 15) {
         // since_id
-        var url = 'https://search.twitter.com/search.json?q=' + query + '&rpp=30&callback=?'; 
+        var url = 'https://search.twitter.com/search.json?q=' + query + '&rpp=30&include_entities=true&callback=?'; 
         $.getJSON(url, function(data) {
           $.each(data.results, function() {  
-            tweets.push($('<li><img class="profile" src="' + this.profile_image_url_https + '"/><span class="meta"><span class="from">' + this.from_user + '</span> <span class="created_at">' + fmtDates(this.created_at) + '</span></span>' + $("<span>" + this.text + "</span>").linkify(hashtagUrlBuilder: function(tag) {return window.location.origin + window.location.pathname + "?q=" + tag;0}, target: "_blank")[0].innerHTML + '</li>'))
-           }); 
+            tweets.push($('<li><img class="profile" src="' + this.profile_image_url_https + '"/><span class="meta"><span class="from">' + this.from_user + '</span> <span class="created_at">' + fmtDates(this.created_at) + '</span></span>' + $.linkify(this.text) + '</li>'))
+            if(this.entities.hasOwnProperty("media")) {
+                $.each(this.entities.media, function() {
+                    flicks.push($('<li><a href="' + this.expanded_url + '"><img src="' + this.media_url_https + '" width="240" /></a></li>'));
+                });
+            }
+           });
          });
       }
       setTimeout(fetchTweets, 8000);

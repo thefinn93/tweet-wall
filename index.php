@@ -19,7 +19,7 @@
   var flickr_api = '99c91f41388ac416592ab3c00f181146';
   </script>
   <script src="javascripts/jquery.highlight-3.js" type="text/javascript"></script>
-  <script src="javascripts/jquery-linkify/jquery.linkify.js" type="text/javascript"></script>
+  <script src="javascripts/jquery-linkify/src/jquery.linkify.js" type="text/javascript"></script>
   <script src="javascripts/tweetwall.js" type="text/javascript"></script>
   <link rel="stylesheet" type="text/css" href="stylesheets/weiweicam.css">
   <meta http-equiv="refresh" content="10800" />
