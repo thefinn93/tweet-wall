@@ -16,6 +16,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
   <meta name="generator" content="https://github.com/thefinn93/tweet-wall" />
   <link rel="help" href="https://github.com/collectiveidea/tweet-wall" />
+  <link rel="stylesheet" type="text/css" href="stylesheets/tweetwall.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js" type="text/javascript"></script>
   <script type="text/javascript" type="text/javascript">
   var realquerytext = '<? echo $query; ?>';
@@ -25,7 +26,6 @@
   <script src="javascripts/jquery.highlight-3.js" type="text/javascript"></script>
   <script src="javascripts/jquery-linkify/src/jquery.linkify.js" type="text/javascript"></script>
   <script src="javascripts/tweetwall.js" type="text/javascript"></script>
-  <link rel="stylesheet" type="text/css" href="stylesheets/tweetwall.css">
   <meta http-equiv="refresh" content="3600" /> <!-- refresh every hour to unbreak things if they get stuck -->
 </head>
 <body>
