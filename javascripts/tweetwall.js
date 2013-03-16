@@ -43,6 +43,7 @@
   }
 
   var query = encodeURIComponent(querytext);
+  url = 'https://search.twitter.com/search.json?q=' + query + '&rpp=30&include_entities=true&callback=?'; 
  
   $(function() {
     tweets = $('#tweets').scroller();
@@ -50,22 +51,33 @@
     
     function fetchTweets() {
       if(tweets.items.length < 15) {
-        // since_id
-        var url = 'https://search.twitter.com/search.json?q=' + query + '&rpp=30&include_entities=true&callback=?'; 
         $.getJSON(url, function(data) {
           $.each(data.results, function() {  
-            tweets.push($('<li><img class="profile" src="' + this.profile_image_url_https + '"/><span class="meta"><span class="from">' + this.from_user + '</span> <span class="created_at">' + fmtDates(this.created_at) + '</span></span>' + $.linkify(this.text) + '</li>'))
+            for(var i = 0; i < this.entities.urls.length; i++) {
+                this.text = this.text.replace(this.entities.urls[i].url, "<a href=\"" + this.entities.urls[i].url + "\" target=\"_blank\">" + this.entities.urls[i].display_url + "</a>");
+            }
+            if(this.entities.hasOwnProperty("media")) {
+                for(var i = 0; i < this.entities.media.length; i++) {
+                    this.text = this.text.replace(this.entities.media[i].url, "<a href=\"" + this.entities.media[i].url + "\" target=\"_blank\"><img src=\"" + this.entities.media[i].media_url_https + ":thumb\" class=\"thumb\"></a>");
+                }
+            }
+            tweets.push($('<li><img class="profile" src="' + this.profile_image_url_https + '"/><span class="meta"><span class="from">' + this.from_user + '</span> <a href="https://twitter.com/' + this.from_user + '/status/' + this.id_str + '" class="created_at">' + fmtDates(this.created_at) + '</a></span>' + $.linkify(this.text, {link: false}) + '</li>'))
             if(this.entities.hasOwnProperty("media")) {
                 $.each(this.entities.media, function() {
                     if(this.type == "photo") {
-                        flicks.push($('<li><a href="' + this.expanded_url + '"><img src="' + this.media_url_https + '" width="240" /></a></li>'));
+                        flicks.push($('<li><a href="' + this.expanded_url + '" target=\"_blank\"><img src="' + this.media_url_https + '" width="240" /></a></li>'));
+                    } else {
+                        console.log(this);
                     }
                 });
             }
            });
+           if(data != undefined) {
+                url = "https://search.twitter.com/search.json" + data.refresh_url + "&callback=?"
+            }
          });
       }
-      setTimeout(fetchTweets, 8000);
+      setTimeout(fetchTweets, 5000);
     }
     
     jsonFlickrApi = function(data) {
@@ -117,13 +129,3 @@
   });
   
 })(jQuery)
-
-    
-    // window.setInterval(showNext, 7000, '#tweets')
-    // window.setInterval(showNext, 4000, '#flickr')
-    // function moveit(element) {
-    //   var top = $(element).position().top - 100;
-    //   $(element).animate({top: top + 'px'}, {duration:5000, easing:'linear',
-    //     complete: function() { moveit(element) }});
-    // }
-    // moveit('#tweets');

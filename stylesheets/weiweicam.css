@@ -52,6 +52,11 @@ footer {
   margin-bottom: 1em;
   color: #000;
 }
+
+.thumb {
+    height: 1em;
+}
+
 #tweets li {
   padding-left: 100px;
   padding-right: 20px;
@@ -160,4 +165,3 @@ footer {
 
 @media only screen and (min-width: 940px) {
 }
-
