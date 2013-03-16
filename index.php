@@ -26,7 +26,7 @@
   <script src="javascripts/jquery-linkify/src/jquery.linkify.js" type="text/javascript"></script>
   <script src="javascripts/tweetwall.js" type="text/javascript"></script>
   <link rel="stylesheet" type="text/css" href="stylesheets/tweetwall.css">
-  <meta http-equiv="refresh" content="10800" />
+  <meta http-equiv="refresh" content="3600" /> <!-- refresh every hour to unbreak things if they get stuck -->
 </head>
 <body>
     <ul id="flickr"></ul>
