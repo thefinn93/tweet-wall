@@ -47,10 +47,10 @@
     function fetchTweets() {
       if(tweets.items.length < 15) {
         // since_id
-        var url = 'http://search.twitter.com/search.json?q=' + query + '&rpp=30&callback=?'; 
+        var url = 'https://search.twitter.com/search.json?q=' + query + '&rpp=30&callback=?'; 
         $.getJSON(url, function(data) {
           $.each(data.results, function() {  
-            tweets.push($('<li><img class="profile" src="' + this.profile_image_url + '"/><span class="meta"><span class="from">' + this.from_user + '</span> <span class="created_at">' + fmtDates(this.created_at) + '</span></span>' + inlinePics(this.text) + '</li>'))
+            tweets.push($('<li><img class="profile" src="' + this.profile_image_url_https + '"/><span class="meta"><span class="from">' + this.from_user + '</span> <span class="created_at">' + fmtDates(this.created_at) + '</span></span>' + inlinePics(this.text) + '</li>'))
            }); 
          });
       }
@@ -61,7 +61,7 @@
       $.each(data.photos.photo, function(i,photo){
         //notice that "t.jpg" is where you change the
         //size of the image
-        var t_url = "http://farm" + photo.farm + 
+        var t_url = "https://farm" + photo.farm + 
         ".static.flickr.com/" + photo.server + "/" + 
         photo.id + "_" + photo.secret + "_" + "m.jpg";
 
@@ -82,7 +82,7 @@
           f_api = flickr_api;
       }
 
-      var flick_url = "http://api.flickr.com/services/rest/?callback=?&format=json&method=flickr.photos.search&text=" + flickrquerytext + user_id + "&tag_mode=any&api_key=" + f_api + "&jsoncallback=jsonFlickrApi";
+      var flick_url = "https://secure.flickr.com/services/rest/?callback=?&format=json&method=flickr.photos.search&text=" + flickrquerytext + user_id + "&tag_mode=any&api_key=" + f_api + "&jsoncallback=jsonFlickrApi";
       if (flicks.items.length < 15) {
           $.getJSON(flick_url)
       }
@@ -92,9 +92,9 @@
     
     function inlinePics(text) {
       return text
-        .replace(/http:\/\/twitpic\.com\/([\w\d]+)/, '<img src="http://twitpic.com/show/thumb/$1" class="twitpic">')
-        .replace(/http:\/\/yfrog\.com\/([\w\d]+)/, '<img src="http://yfrog.com/$1.th.jpg" class="twitpic">')
-        .replace(/http:\/\/pic\.im\/([\w\d]+)/, '<img src="http://pic.im/website/thumbnail/$1" class="twitpic">')
+        .replace(/http:\/\/twitpic\.com\/([\w\d]+)/, '<img src="https://twitpic.com/show/thumb/$1" class="twitpic">')
+        .replace(/http:\/\/yfrog\.com\/([\w\d]+)/, '<img src="https://yfrog.com/$1.th.jpg" class="twitpic">')
+        .replace(/http:\/\/pic\.im\/([\w\d]+)/, '<img src="https://pic.im/website/thumbnail/$1" class="twitpic">')
     }
 
     function fmtDates(datestring) {
