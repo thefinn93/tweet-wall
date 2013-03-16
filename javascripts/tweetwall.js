@@ -96,16 +96,12 @@
     }
 
     function fetchFlicks() {
-      var user_id = "";
-      if ( typeof flickr_user_id !== 'undefined' ) {
-          user_id = "&user_id=" + flickr_user_id;
-      }
-      var f_api = '99c91f41388ac416592ab3c00f181146';
+      var f_api = '6f6a0a18485bf6a2a6b9a7f467e39f96';
       if ( typeof flickr_api !== 'undefined' ) {
           f_api = flickr_api;
       }
 
-      var flick_url = "https://secure.flickr.com/services/rest/?callback=?&format=json&method=flickr.photos.search&text=" + flickrquerytext + user_id + "&tag_mode=any&api_key=" + f_api + "&jsoncallback=jsonFlickrApi";
+      var flick_url = "https://secure.flickr.com/services/rest/?callback=?&format=json&method=flickr.photos.search&text=" + flickrquerytext + "&tag_mode=any&api_key=" + f_api + "&jsoncallback=jsonFlickrApi";
       if (flicks.items.length < 15) {
           $.getJSON(flick_url)
       }
