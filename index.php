@@ -8,7 +8,8 @@ if(isset($_REQUEST['q'])) {
     if($_REQUEST['query'] != "") {
         $query = $_REQUEST['query'];
     }
-} else {
+}
+if($query == null) {
     $trends = json_decode(file_get_contents("https://api.twitter.com/1/trends/1.json"));
     $query = $trends[0]->trends[0]->name;
 }
