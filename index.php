@@ -1,6 +1,8 @@
   <?
    $query = null;
-   if(isset($_REQUEST['query'])) {
+   if(isset($_REQUEST['q'])) {
+       $query = $_REQUEST['q'];
+   } elseif(isset($_REQUEST['query'])) {
        $query = $_REQUEST['query'];
    } else {
        $trends = json_decode(file_get_contents("https://api.twitter.com/1/trends/1.json"));
