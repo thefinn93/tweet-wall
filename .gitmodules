@@ -1,0 +1,3 @@
+[submodule "javascripts/jquery-linkify"]
+	path = javascripts/jquery-linkify
+	url = https://github.com/dobot/jquery-linkify
