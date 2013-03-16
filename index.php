@@ -1,7 +1,10 @@
   <?
-   $query="occupywallstreet";
+   $query = null;
    if(isset($_REQUEST['query'])) {
        $query = $_REQUEST['query'];
+   } else {
+       $trends = json_decode(file_get_contents("https://api.twitter.com/1/trends/1.json"));
+       $query = $trends[0]->trends[0]->query;
    }
   ?><!DOCTYPE html>
 <html lang="en">
