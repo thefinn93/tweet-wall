@@ -57,7 +57,9 @@
             tweets.push($('<li><img class="profile" src="' + this.profile_image_url_https + '"/><span class="meta"><span class="from">' + this.from_user + '</span> <span class="created_at">' + fmtDates(this.created_at) + '</span></span>' + $.linkify(this.text) + '</li>'))
             if(this.entities.hasOwnProperty("media")) {
                 $.each(this.entities.media, function() {
-                    flicks.push($('<li><a href="' + this.expanded_url + '"><img src="' + this.media_url_https + '" width="240" /></a></li>'));
+                    if(this.type == "photo") {
+                        flicks.push($('<li><a href="' + this.expanded_url + '"><img src="' + this.media_url_https + '" width="240" /></a></li>'));
+                    }
                 });
             }
            });
