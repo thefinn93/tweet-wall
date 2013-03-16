@@ -1,0 +1,9 @@
+<ifModule mod_headers.c>
+    Header set Cache-Control "max-age=604800"
+</ifModule>
+<ifModule mod_deflate.c>
+    <filesMatch ".(js|css)$">
+        SetOutputFilter DEFLATE
+    </filesMatch>
+</ifModule>
+
