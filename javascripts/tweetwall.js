@@ -4,7 +4,7 @@
     list.items = [];
     
     list.push = function(items) {
-      items.css('display', 'none').highlight('aiww').highlight('ai weiwei').highlight('#aiww').highlight('freeaiweiwei').highlight('weiweicam');
+      items.css('display', 'none').highlight(realquerytext);
       items.each(function() {
         list.items.push(this);
       })
