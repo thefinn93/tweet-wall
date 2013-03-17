@@ -8,10 +8,11 @@
     }
     
     list.push = function(items) {
-      items.css('display', 'none');
-      items.each(function() {
-        list.items.push(this);
-      })
+        items.css('display', 'none');
+        items.each(function() {
+            console.log(this);
+            list.items.push(this);
+        })
     }
     
     list.cleanup = function() {
@@ -78,7 +79,7 @@
         var p_url = "http://www.flickr.com/photos/" + 
         photo.owner + "/" + photo.id;
 
-        flicks.push($('<li><a href="' + p_url + '"><img src="' + t_url + '"/></a></li>'));
+        flicks.push($('<li><a href="' + p_url + '" target="_blank"><img src="' + t_url + '"/></a></li>'));
       });
     }
 
